@@ -47,3 +47,12 @@ class MealCategoriesRetrieveView(generics.RetrieveUpdateDestroyAPIView):
     queryset = MealCategories.objects.all()
     serializer_class = MealCategoriesSerializer
 
+
+class MealsCreateView(generics.ListCreateAPIView):
+    queryset = Meals.objects.all()
+    serializer_class = MealsSerializer
+
+
+class MealsRetrieveView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Meals.objects.all()
+    serializer_class = MealsSerializer

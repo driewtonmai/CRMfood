@@ -53,3 +53,9 @@ class MealCategoriesSerializer(serializers.ModelSerializer):
             Departments.objects.create(mealcategories=mealcategories, **department)
 
         return mealcategories
+
+
+class MealsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Meals
+        fields = ('name', 'price', 'description',)

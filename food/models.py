@@ -56,11 +56,11 @@ class MealCategories(models.Model):
     departmentid = models.ForeignKey('Departments', on_delete=models.CASCADE, verbose_name='DemartmentID', related_name='MealCategories')
 
 
-class Statuses(models.Model):
+class Statuses(models.Model): #как это отобразить в сериализаторе
     name = models.IntegerField(choices=STATUS, verbose_name='Status')
 
 
-class ServicePercentage(models.Model):
+class ServicePercentage(models.Model): #gg 4to delat'
     percentage = models.IntegerField(verbose_name="Percentage")
 
 
