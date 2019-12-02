@@ -28,7 +28,7 @@ class DepartmentsCreateView(generics.ListCreateAPIView):
     serializer_class = DepartmentsSerializer
 
 
-class DepartmentsRetrieveView(generics.ListCreateAPIView):
+class DepartmentsRetrieveView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Departments.objects.all()
     serializer_class = DepartmentsSerializer
 
@@ -36,4 +36,14 @@ class DepartmentsRetrieveView(generics.ListCreateAPIView):
 class UserCreateView(generics.ListCreateAPIView):
     queryset = Users.objects.all()
     serializer_class = UsersSerializer
+
+
+class MealCategoriesCreateView(generics.ListCreateAPIView):
+    queryset = MealCategories.objects.all()
+    serializer_class = MealCategoriesSerializer
+
+
+class MealCategoriesRetrieveView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = MealCategories.objects.all()
+    serializer_class = MealCategoriesSerializer
 

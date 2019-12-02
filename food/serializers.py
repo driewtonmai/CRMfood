@@ -37,3 +37,19 @@ class UsersSerializer(serializers.ModelSerializer):
             Roles.objects.create(users=users, **role)
 
         return users
+
+
+class MealCategoriesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MealCategories
+        fields = ('name', 'departmentid',)
+
+    def create(self, validated_data):
+        departments = validated_data.pop('departmentid')
+
+        mealcategories = MealCategories.objects.create(**validated_data)
+
+        for department in departments:
+            Departments.objects.create(mealcategories=mealcategories, **department)
+
+        return mealcategories
