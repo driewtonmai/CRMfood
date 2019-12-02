@@ -1,10 +1,6 @@
 from django.db import models
-import jwt
-from datetime import datetime, timedelta
-from django.conf import settings
-from django.contrib.auth.models import (
-    AbstractBaseUser, BaseUserManager, PermissionsMixin
-)
+import datetime
+from django.utils import timezone
 
 STATUS = [
     (1, 'to-do'),
@@ -41,12 +37,12 @@ class Departments(models.Model):
 
 class Users(models.Model):
     name = models.CharField(verbose_name='Name', max_length=50)
-    surname = models.CharField(verbose_name='Name', max_length=50)
-    login = models.CharField(verbose_name='Name', max_length=50)
+    surname = models.CharField(verbose_name='Surname', max_length=50)
+    login = models.CharField(verbose_name='Login', max_length=50)
     password = models.CharField(verbose_name='Password', max_length=50)
     email = models.EmailField(max_length=50, unique=True)
     roleid = models.ForeignKey('Roles', on_delete=models.CASCADE, verbose_name='RoleID', related_name='Users')
-    dateoffadd = models.DateField()
+    dateofadd = models.DateField()
     phone = models.CharField(max_length=50)
 
 
@@ -58,11 +54,6 @@ class GetUserToken(models.Model):
 class MealCategories(models.Model):
     name = models.CharField(verbose_name='Name', max_length=50)
     departmentid = models.ForeignKey('Departments', on_delete=models.CASCADE, verbose_name='DemartmentID', related_name='MealCategories')
-
-
-# class MealCategoriesByDepartment(models.Model):
-#     name = models.CharField(verbose_name='Name', max_length=50)
-#     departmentid = models.ForeignKey('Departments', on_delete=models.CASCADE, verbose_name='DemartmentID', related_name='MealCategories')
 
 
 class Statuses(models.Model):
@@ -96,8 +87,3 @@ class Checks(models.Model):
     totalsum = models.IntegerField()
     meals = models.ForeignKey('Meals', on_delete=models.CASCADE, related_name='Checks')
 
-
-# class Password(models.Model):
-#     userid = ...
-#     oldpassword =
-#     newpassword =

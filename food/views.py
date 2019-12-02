@@ -1,6 +1,5 @@
 from rest_framework import generics
 
-from food.models import *
 from food.serializers import *
 
 
@@ -32,3 +31,9 @@ class DepartmentsCreateView(generics.ListCreateAPIView):
 class DepartmentsRetrieveView(generics.ListCreateAPIView):
     queryset = Departments.objects.all()
     serializer_class = DepartmentsSerializer
+
+
+class UserCreateView(generics.ListCreateAPIView):
+    queryset = Users.objects.all()
+    serializer_class = UsersSerializer
+
