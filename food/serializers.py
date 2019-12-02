@@ -59,3 +59,9 @@ class MealsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Meals
         fields = ('name', 'price', 'description',)
+
+
+class StatusesSerializer(serializers.ModelSerializer):
+    class meta:
+        model = Statuses
+        fields = ('name',)

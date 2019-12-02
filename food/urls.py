@@ -14,5 +14,6 @@ urlpatterns = [
     path('mealcategories/<int:pk>/', MealCategoriesRetrieveView.as_view(), name='mealcategories_retrieve'),
     path('meals/', MealsCreateView.as_view(), name='meals_create'),
     path('meals/<int:pk>/', MealsRetrieveView.as_view(), name='meals_retrieve'),
+    path('statuses/', StatusesCreateView.as_view(), name='statuses_create'),
 
 ]

@@ -38,6 +38,11 @@ class UserCreateView(generics.ListCreateAPIView):
     serializer_class = UsersSerializer
 
 
+class UserRetrieveView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Users.objects.all()
+    serializer_class = UsersSerializer
+
+
 class MealCategoriesCreateView(generics.ListCreateAPIView):
     queryset = MealCategories.objects.all()
     serializer_class = MealCategoriesSerializer
@@ -56,3 +61,8 @@ class MealsCreateView(generics.ListCreateAPIView):
 class MealsRetrieveView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Meals.objects.all()
     serializer_class = MealsSerializer
+
+
+class StatusesCreateView(generics.ListCreateAPIView):
+    queryset = Statuses.objects.all()
+    serializer_class = StatusesSerializer
