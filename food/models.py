@@ -3,17 +3,17 @@ import datetime
 from django.utils import timezone
 
 STATUS = [
-    (1, 'to-do'),
-    (2, 'in progress'),
-    (3, 'done')
+    ('to do', 'to do'),
+    ('in progress', 'in progress'),
+    ('done', 'done')
 ]
 
 TABLES = [
-    (1, '1'),
-    (2, '2'),
-    (3, '3'),
-    (4, '4'),
-    (5, '5'),
+    ('Table #1', 'Table #1'),
+    ('Table #2', 'Table #2'),
+    ('Table #3', 'Table #3'),
+    ('Table #4', 'Table #4'),
+    ('Table #5', 'Table #5'),
 ]
 
 
@@ -32,7 +32,7 @@ class Roles(models.Model):
 
 
 class Departments(models.Model):
-        name = models.CharField(verbose_name='Name', max_length=50)
+    name = models.CharField(verbose_name='Name', max_length=50)
 
 
 class Users(models.Model):
@@ -41,23 +41,23 @@ class Users(models.Model):
     login = models.CharField(verbose_name='Login', max_length=50)
     password = models.CharField(verbose_name='Password', max_length=50)
     email = models.EmailField(max_length=50, unique=True)
-    roleid = models.ForeignKey('Roles', on_delete=models.CASCADE, verbose_name='RoleID', related_name='Users')
+    roleid = models.ForeignKey('Roles', on_delete=models.CASCADE, verbose_name='RoleID', related_name='users')
     dateofadd = models.DateField()
     phone = models.CharField(max_length=50)
 
 
 class GetUserToken(models.Model):
-    roleid = models.ForeignKey('Roles', on_delete=models.CASCADE, verbose_name='RoleID', related_name='GetUserToken')
+    roleid = models.ForeignKey('Roles', on_delete=models.CASCADE, verbose_name='RoleID', related_name='get_user_token')
     token = models.CharField(max_length=100)
 
 
 class MealCategories(models.Model):
     name = models.CharField(verbose_name='Name', max_length=50)
-    departmentid = models.ForeignKey('Departments', on_delete=models.CASCADE, verbose_name='DemartmentID', related_name='MealCategories')
+    departmentid = models.ForeignKey('Departments', on_delete=models.CASCADE, verbose_name='DemartmentID', related_name='meal_categories')
 
 
 class Statuses(models.Model): #как это отобразить в сериализаторе
-    name = models.IntegerField(choices=STATUS, verbose_name='Status')
+    name = models.CharField(choices=STATUS, max_length=30, verbose_name='Status')
 
 
 class ServicePercentage(models.Model): #gg 4to delat'

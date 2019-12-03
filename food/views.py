@@ -66,3 +66,20 @@ class MealsRetrieveView(generics.RetrieveUpdateDestroyAPIView):
 class StatusesCreateView(generics.ListCreateAPIView):
     queryset = Statuses.objects.all()
     serializer_class = StatusesSerializer
+
+
+class StatusesRetrieveView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Statuses.objects.all()
+    serializer_class = StatusesSerializer
+
+
+class ServicePercentageCreateView(generics.ListCreateAPIView):
+    queryset = ServicePercentage.objects.all()
+    serializer_class = ServicePercentageSerializer
+
+
+class ServicePercentageRetrieveView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = ServicePercentage.objects.all()
+    serializer_class = ServicePercentageSerializer
+
+
