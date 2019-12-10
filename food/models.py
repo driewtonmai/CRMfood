@@ -66,9 +66,6 @@ class Statuses(models.Model):
 class ServicePercentage(models.Model):
     percentage = models.IntegerField(verbose_name="Percentage")
 
-    def __str__(self):
-        return self.percentage
-
 
 class Meals(models.Model):
     name = models.CharField(verbose_name='Name', max_length=50)
@@ -86,6 +83,9 @@ class Orders(models.Model):
     isitopen = models.BooleanField()
     date = models.DateField(auto_now_add=True)
 
+    def get_total_sum(self):
+        return sum(meal.get_sum() for meal in self.mealsid.all())
+
 
 class MealsCount(models.Model):
     order = models.ForeignKey(Orders, on_delete=models.CASCADE, related_name='mealsid')
@@ -97,11 +97,11 @@ class MealsCount(models.Model):
 
 
 class Checks(models.Model):
-    orderid = models.ForeignKey('Orders', on_delete=models.CASCADE, verbose_name='Order')
+    orderid = models.ForeignKey(Orders, on_delete=models.CASCADE, verbose_name='Order')
     date = models.DateField(auto_now_add=True)
-    servicefee = models.ForeignKey('ServicePercentage', on_delete=models.CASCADE)
-    mealsid = models.ForeignKey('MealsCount', on_delete=models.CASCADE, verbose_name='Meal')
+    servicefee = models.ForeignKey(ServicePercentage, on_delete=models.CASCADE)
+    mealsid = models.ForeignKey(MealsCount, on_delete=models.CASCADE, verbose_name='Meal')
 
     def get_totalsum(self):
-        return ...
+        return self.orderid.get_total_sum() + self.servicefee.percentage
 

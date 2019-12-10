@@ -23,6 +23,6 @@ urlpatterns = [
     path('service_percentage/<int:pk>/', ServicePercentageRetrieveView.as_view(), name='service_percentage_retrieve'),
     path('orders', OrdersCreateView.as_view(), name='orders_create'),
     path('orders/<int:pk>/', OrdersRetrieveView.as_view(), name='orders_retrieve'),
-    path('checks/', ChecksCreateView, name='checks_create'),
-    path('checks/<int:pk>', ChecksCreateView, name='checks_retrieve'),
+    path('checks/', ChecksCreateView.as_view(), name='checks_create'),
+    path('checks/<int:pk>', ChecksRetrieveView.as_view, name='checks_retrieve'),
 ]
