@@ -70,10 +70,12 @@ class OrdersSerializer(serializers.ModelSerializer):
 
 
 class ChecksSerializers(serializers.ModelSerializer):
+    mealsid = MealsCountSerializer(read_only=True)
     servicefee = serializers.FloatField(read_only=True, source='servicefee.percentage')
     totalsum = serializers.FloatField(source='get_totalsum', read_only=True)
+
     class Meta:
         model = Checks
-        fields = ('id', 'orderid', 'date', 'servicefee', 'totalsum', 'mealsid', )
+        fields = ('id', 'orderid', 'date', 'servicefee', 'totalsum', 'mealsid' )
 
 
