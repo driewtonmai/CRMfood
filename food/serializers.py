@@ -44,19 +44,35 @@ class StatusesSerializer(serializers.ModelSerializer):
         model = Statuses
         fields = ('id', 'name',)
 
+
 class ServicePercentageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ServicePercentage
         fields = ('percentage',)
 
 
+class MealsCountSerializer(serializers.ModelSerializer):
+    name = serializers.CharField(read_only=True)
+    count = serializers.CharField(read_only=True)
+    sum = serializers.IntegerField(read_only=True, source='get_sum')
+
+    class Meta:
+        model = MealsCount
+        fields = ('id', 'name', 'count', 'sum')
+
+
 class OrdersSerializer(serializers.ModelSerializer):
+    mealsid = MealsCountSerializer(many=True)
+
     class Meta:
         model = Orders
-        fields = ...
+        fields = ('id', 'waiterid', 'tableid', 'isitopen', 'date', 'mealsid',)
 
 
 class ChecksSerializers(serializers.ModelSerializer):
+
     class Meta:
         model = Checks
-        fields = ...
+        fields = ('orderid', 'date', 'servicefee', 'mealsid', )
+
+

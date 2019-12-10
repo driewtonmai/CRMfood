@@ -13,6 +13,8 @@ urlpatterns = [
     path('users/<int:pk>/', UserRetrieveView.as_view(), name='user_retrieve'),
     path('mealcategories/', MealCategoriesCreateView.as_view(), name='mealcategories_create'),
     path('mealcategories/<int:pk>/', MealCategoriesRetrieveView.as_view(), name='mealcategories_retrieve'),
+    path('mealcategoriesbydepartment/<int:department_id>/', MealCategoriesRetrieveView.as_view(),
+         name='mealcategories_by_department'),
     path('meals/', MealsCreateView.as_view(), name='meals_create'),
     path('meals/<int:pk>/', MealsRetrieveView.as_view(), name='meals_retrieve'),
     path('statuses/', StatusesCreateView.as_view(), name='statuses_create'),
