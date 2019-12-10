@@ -19,6 +19,8 @@ urlpatterns = [
     path('statuses/<int:pk>/', StatusesRetrieveView.as_view(), name='statuses_retrieve'),
     path('service_percentage/', ServicePercentageCreateView.as_view(), name='service_percentage_create'),
     path('service_percentage/<int:pk>/', ServicePercentageRetrieveView.as_view(), name='service_percentage_retrieve'),
-
-
+    path('orders', OrdersCreateView.as_view(), name='orders_create'),
+    path('orders/<int:pk>/', OrdersRetrieveView.as_view(), name='orders_retrieve'),
+    path('checks/', ChecksCreateView, name='checks_create'),
+    path('checks/<int:pk>', ChecksCreateView, name='checks_retrieve'),
 ]

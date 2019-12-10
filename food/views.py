@@ -83,3 +83,21 @@ class ServicePercentageRetrieveView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ServicePercentageSerializer
 
 
+class OrdersCreateView(generics.ListCreateAPIView):
+    queryset = Orders.objects.all()
+    serializer_class = OrdersSerializer
+
+
+class OrdersRetrieveView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Orders.objects.all()
+    serializer_class = OrdersSerializer
+
+
+class ChecksCreateView(generics.ListCreateAPIView):
+    queryset = Checks.objects.all()
+    serializer_class = ChecksSerializers
+
+
+class ChecksRetrieveView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Checks.objects.all()
+    serializer_class = ChecksSerializers

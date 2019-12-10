@@ -48,3 +48,15 @@ class ServicePercentageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ServicePercentage
         fields = ('percentage',)
+
+
+class OrdersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Orders
+        fields = ...
+
+
+class ChecksSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Checks
+        fields = ...
