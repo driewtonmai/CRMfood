@@ -129,3 +129,11 @@ class MealsByCategoryView(generics.ListAPIView):
     def get_queryset(self):
         category = self.kwargs['categoryid']
         return Meals.objects.filter(categoryid=category)
+
+
+# Active orders view
+class ActiveOrders(generics.ListAPIView):
+    serializer_class = OrdersSerializer
+
+    def get_queryset(self):
+        return Orders.objects.filter(isitopen=True)

@@ -28,6 +28,8 @@ urlpatterns = [
 
     path('mealsbycategory/<int:categoryid>/', MealsByCategoryView.as_view(), name='meals_by_category'),
 
+    path('activeorders/', ActiveOrders.as_view(), name='active_orders'),
+
     path('meals/', MealsCreateView.as_view(), name='meals_create'),
     path('meals/<int:pk>/', MealsRetrieveView.as_view(), name='meals_retrieve'),
 
