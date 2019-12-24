@@ -8,23 +8,10 @@ class TablesSerializer(serializers.ModelSerializer):
         fields = ('id', 'name',)
 
 
-class RolesSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Roles
-        fields = ('id', 'name',)
-
-
 class DepartmentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Departments
         fields = ('id', 'name',)
-
-
-class UsersSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Users
-        fields = ('id', 'name', 'surname', 'login', 'password', 'email', 'dateofadd', 'phone', 'roleid',)
-        extra_kwargs = {'password': {'write_only': True}}
 
 
 class MealCategoriesSerializer(serializers.ModelSerializer):
@@ -77,5 +64,3 @@ class ChecksSerializers(serializers.ModelSerializer):
     class Meta:
         model = Checks
         fields = ('id', 'orderid', 'date', 'servicefee', 'totalsum', 'mealsid')
-
-

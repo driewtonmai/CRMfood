@@ -1,5 +1,9 @@
-from rest_framework import generics, viewsets
-from .models import MealCategories
+from rest_framework import generics, viewsets, status
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.authtoken.models import Token
 from food.serializers import *
 
 
@@ -14,37 +18,16 @@ class TablesRetrieveView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TablesSerializer
 
 
-# Roles views
-class RolesCreateView(generics.ListCreateAPIView):
-    queryset = Roles.objects.all()
-    serializer_class = RolesSerializer
-
-
-class RolesRetrieveView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Roles.objects.all()
-    serializer_class = RolesSerializer
-
-
 # Departments views
 class DepartmentsCreateView(generics.ListCreateAPIView):
     queryset = Departments.objects.all()
     serializer_class = DepartmentsSerializer
+    permission_classes = (IsAuthenticated,)
 
 
 class DepartmentsRetrieveView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Departments.objects.all()
     serializer_class = DepartmentsSerializer
-
-
-# Users views
-class UserCreateView(generics.ListCreateAPIView):
-    queryset = Users.objects.all()
-    serializer_class = UsersSerializer
-
-
-class UserRetrieveView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Users.objects.all()
-    serializer_class = UsersSerializer
 
 
 # Meal Categories views

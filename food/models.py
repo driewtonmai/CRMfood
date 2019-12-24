@@ -1,22 +1,21 @@
 from django.db import models
-import datetime
-from django.utils import timezone
 
 STATUS = [
     ('to do', 'to do'),
     ('in progress', 'in progress'),
     ('done', 'done')
 ]
+# class Profile(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     name = models.CharField(verbose_name='Name', max_length=50)
+#     surname = models.CharField(verbose_name='Surname', max_length=50)
+#     login = models.CharField(verbose_name='Login', max_length=50, unique=True)
+#     roleid = models.ForeignKey('Roles', on_delete=models.CASCADE, verbose_name='RoleID')
+#     dateofadd = models.DateField(auto_now_add=True)
+#     phone = models.CharField(max_length=50)
 
 
 class Tables(models.Model):
-    name = models.CharField(verbose_name='Name', max_length=50)
-
-    def __str__(self):
-        return self.name
-
-
-class Roles(models.Model):
     name = models.CharField(verbose_name='Name', max_length=50)
 
     def __str__(self):
@@ -28,24 +27,6 @@ class Departments(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class Users(models.Model):
-    name = models.CharField(verbose_name='Name', max_length=50)
-    surname = models.CharField(verbose_name='Surname', max_length=50)
-    login = models.CharField(verbose_name='Login', max_length=50)
-    password = models.CharField(verbose_name='Password', max_length=50)
-    email = models.EmailField(max_length=50, unique=True)
-    roleid = models.ForeignKey('Roles', on_delete=models.CASCADE, verbose_name='RoleID')
-    dateofadd = models.DateField(auto_now_add=True)
-    phone = models.CharField(max_length=50)
-
-    def __str__(self):
-        return '{}, {}'.format(self.name, self.surname)
-
-class GetUserToken(models.Model):
-    roleid = models.ForeignKey('Roles', on_delete=models.CASCADE, verbose_name='RoleID')
-    token = models.CharField(max_length=100)
 
 
 class MealCategories(models.Model):
@@ -78,7 +59,7 @@ class Meals(models.Model):
 
 
 class Orders(models.Model):
-    waiterid = models.ForeignKey('Users', on_delete=models.CASCADE, verbose_name='Waiter')
+    waiterid = models.ForeignKey('users.User', on_delete=models.CASCADE, verbose_name='Waiter')
     tableid = models.ForeignKey('Tables', on_delete=models.CASCADE, verbose_name='Table')
     isitopen = models.BooleanField()
     date = models.DateField(auto_now_add=True)
@@ -104,4 +85,3 @@ class Checks(models.Model):
 
     def get_totalsum(self):
         return self.orderid.get_total_sum() + self.servicefee.percentage
-
