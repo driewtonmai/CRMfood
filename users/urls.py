@@ -1,5 +1,5 @@
 from django.urls import path
-from food.views import *
+from users.views import *
 
 app_name = 'food'
 

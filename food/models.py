@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import User
 
 STATUS = [
     ('to do', 'to do'),
@@ -59,7 +60,7 @@ class Meals(models.Model):
 
 
 class Orders(models.Model):
-    waiterid = models.ForeignKey('users.User', on_delete=models.CASCADE, verbose_name='Waiter')
+    waiterid = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Waiter')
     tableid = models.ForeignKey('Tables', on_delete=models.CASCADE, verbose_name='Table')
     isitopen = models.BooleanField()
     date = models.DateField(auto_now_add=True)
