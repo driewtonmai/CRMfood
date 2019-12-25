@@ -121,7 +121,7 @@ AUTH_USER_MODEL = "users.User"
 
 REST_FRAMEWORK = {
   'DEFAULT_AUTHENTICATION_CLASSES': (
-    'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+      'users.backends.JWTAuthentication',
   ),
 }
 
