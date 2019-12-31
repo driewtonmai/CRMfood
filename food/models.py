@@ -6,14 +6,6 @@ STATUS = [
     ('in progress', 'in progress'),
     ('done', 'done')
 ]
-# class Profile(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     name = models.CharField(verbose_name='Name', max_length=50)
-#     surname = models.CharField(verbose_name='Surname', max_length=50)
-#     login = models.CharField(verbose_name='Login', max_length=50, unique=True)
-#     roleid = models.ForeignKey('Roles', on_delete=models.CASCADE, verbose_name='RoleID')
-#     dateofadd = models.DateField(auto_now_add=True)
-#     phone = models.CharField(max_length=50)
 
 
 class Tables(models.Model):
@@ -48,6 +40,9 @@ class Statuses(models.Model):
 class ServicePercentage(models.Model):
     percentage = models.IntegerField(verbose_name="Percentage")
 
+    def __str__(self):
+        return self.percentage
+
 
 class Meals(models.Model):
     name = models.CharField(verbose_name='Name', max_length=50)
@@ -67,6 +62,9 @@ class Orders(models.Model):
 
     def get_total_sum(self):
         return sum(meal.get_sum() for meal in self.mealsid.all())
+
+    def __str__(self):
+        return '{}, {}'.format(self.waiterid, self.tableid)
 
 
 class MealsCount(models.Model):

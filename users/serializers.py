@@ -34,11 +34,15 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
 
 class LoginSerializer(serializers.Serializer):
+    roleid = serializers.IntegerField(
+        source='roles.id',
+        read_only=True
+    )
     login = serializers.CharField(max_length=255)
     password = serializers.CharField(max_length=255, write_only=True)
     token = serializers.CharField(max_length=255, read_only=True)
 
-    def validate(self,data):
+    def validate(self, data):
         login = data.get('login', None)
         password = data.get('password', None)
 
@@ -71,7 +75,7 @@ class LoginSerializer(serializers.Serializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    role_id = serializers.PrimaryKeyRelatedField(
+    roleid = serializers.PrimaryKeyRelatedField(
         queryset=Roles.objects.all(),
         source='roles.id',
     )
@@ -84,7 +88,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'name', 'surname', 'login', 'email', 'roleid', 'dateofadd', 'phone', 'password', 'token')
-        read_only_fields = ('token')
+        read_only_fields = ('token',)
 
     def update(self, instance, validated_data):
         password = validated_data.pop('password', None)

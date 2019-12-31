@@ -13,6 +13,4 @@ urlpatterns = [
 
     path('user/', UserRetrieveUpdateAPIView.as_view(), name='user'),
 
-    # path('getusertoken', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    # path('getusertokenrefresh', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
 ]
