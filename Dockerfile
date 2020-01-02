@@ -38,11 +38,12 @@ RUN apk --no-cache add \
 COPY . .
 
 RUN  mkdir -p /run/nginx/
-COPY docker/nginx-app.conf /etc/nginx/conf.d/default.conf
-COPY docker/uwsgi.ini /etc/uwsgi/uwsgi.ini
-COPY docker/uwsgi_params /etc/nginx/uwsgi_params
+#COPY docker/nginx-app.conf /etc/nginx/conf.d/default.conf
+#COPY docker/uwsgi.ini /etc/uwsgi/uwsgi.ini
+#COPY docker/uwsgi_params /etc/nginx/uwsgi_params
 
 EXPOSE 8000
 
-ENTRYPOINT [ "/code/entrypoint.sh" ]
-CMD [ "/usr/local/bin/honcho", "-f", "/code/docker/Procfile", "start" ]
+#ENTRYPOINT [ "/code/entrypoint.sh" ]
+#CMD [ "/usr/local/bin/honcho", "-f", "/code/docker/Procfile", "start" ]
+CMD python3 manage.py runserver 0.0.0.0:$PORT
