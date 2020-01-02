@@ -40,9 +40,6 @@ class Statuses(models.Model):
 class ServicePercentage(models.Model):
     percentage = models.IntegerField(verbose_name="Percentage")
 
-    def __str__(self):
-        return self.percentage
-
 
 class Meals(models.Model):
     name = models.CharField(verbose_name='Name', max_length=50)

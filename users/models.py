@@ -63,7 +63,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = 'Users'
 
     def __str__(self):
-        return '{}, {}'.format(self.name, self.surname)
+        return self.login
 
     @property
     def token(self):
