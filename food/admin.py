@@ -2,6 +2,16 @@ from django.contrib import admin
 
 from food.models import *
 
+
+# class MealsCountInline(admin.StackedInline):
+#     model = MealsCount
+#     extra = 1
+#
+#
+# class CheckAdmin(admin.ModelAdmin):
+#     inlines = (MealsCountInline,)
+
+
 admin.site.register(Tables)
 admin.site.register(Departments)
 admin.site.register(Meals)
