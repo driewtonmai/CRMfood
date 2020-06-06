@@ -2,7 +2,7 @@ automium==0.2.6
 automium-web==0.1.1
 Click==7.0
 coverage==5.0.1
-Django==2.2.7
+Django==2.2.13
 django-extensions==2.2.5
 djangorestframework==3.10.3
 djangorestframework-jwt==1.11.0
